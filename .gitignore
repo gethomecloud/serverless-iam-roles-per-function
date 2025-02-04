@@ -11,3 +11,4 @@ npm-debug.log
 *.txt
 # JetBrains IDE
 .idea
+.cursorrules

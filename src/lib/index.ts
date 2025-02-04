@@ -272,6 +272,37 @@ class ServerlessIamPerFunctionPlugin {
   }
 
   /**
+   * Removes duplicate statements from an array of IAM statements
+   * @param {Statement[]} statements
+   * @returns {Statement[]} Deduplicated statements
+   */
+  private deduplicateStatements(statements: Statement[]): Statement[] {
+    return statements.reduce((unique: Statement[], statement: Statement) => {
+      // Convert statement to string for comparison, sorting arrays to ensure consistent comparison
+      const statementString = JSON.stringify({
+        ...statement,
+        Action: Array.isArray(statement.Action) ? [...statement.Action].sort() : statement.Action,
+        Resource: Array.isArray(statement.Resource) ? [...statement.Resource].sort() : statement.Resource
+      });
+
+      // Check if we already have this exact statement
+      const exists = unique.some(s => {
+        const existingString = JSON.stringify({
+          ...s,
+          Action: Array.isArray(s.Action) ? [...s.Action].sort() : s.Action,
+          Resource: Array.isArray(s.Resource) ? [...s.Resource].sort() : s.Resource
+        });
+        return existingString === statementString;
+      });
+
+      if (!exists) {
+        unique.push(statement);
+      }
+      return unique;
+    }, []);
+  }
+
+  /**
    * Will check if function has a definition of iamRoleStatements.
    * If so will create a new Role for the function based on these statements.
    * @param {string} functionName
@@ -298,7 +329,7 @@ class ServerlessIamPerFunctionPlugin {
     const policyStatements: Statement[] = [];
     functionIamRole.Properties.Policies[0].PolicyDocument.Statement = policyStatements;
     // set log statements
-    policyStatements[0] = {
+    policyStatements.push({
       Effect: 'Allow',
       Action: ['logs:CreateLogStream', 'logs:CreateLogGroup', 'logs:PutLogEvents'],
       Resource: [
@@ -307,7 +338,7 @@ class ServerlessIamPerFunctionPlugin {
             `:log-group:${this.serverless.providers.aws.naming.getLogGroupName(functionObject.name)}:*:*`,
         },
       ],
-    };
+    });
     // remove managed policies
     functionIamRole.Properties.ManagedPolicyArns = [];
     // set vpc if needed
@@ -420,6 +451,19 @@ class ServerlessIamPerFunctionPlugin {
       this.createRoleForFunction(func, functionToRoleMap);
     }
     this.setEventSourceMappings(functionToRoleMap);
+
+    // After all roles are created, deduplicate statements in each role
+    const resources = this.serverless.service.provider.compiledCloudFormationTemplate.Resources;
+    for (const [, resource] of Object.entries(resources)) {
+      const resourceType = _.get(resource, 'Type');
+      if (resourceType === 'AWS::IAM::Role') {
+        const statements = _.get(resource, 'Properties.Policies[0].PolicyDocument.Statement', []);
+        if (statements.length > 0) {
+          (resource as any).Properties.Policies[0].PolicyDocument.Statement = 
+            this.deduplicateStatements(statements);
+        }
+      }
+    }
   }
 }
 

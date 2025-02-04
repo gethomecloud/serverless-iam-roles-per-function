@@ -1,0 +1,356 @@
+{
+    "Type": "AWS::IAM::Role",
+    "Properties": {
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": [
+                            "lambda.amazonaws.com"
+                        ]
+                    },
+                    "Action": [
+                        "sts:AssumeRole"
+                    ]
+                }
+            ]
+        },
+        "Policies": [
+            {
+                "PolicyName": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "project",
+                            "dev",
+                            "lambda"
+                        ]
+                    ]
+                },
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:CreateLogStream",
+                                "logs:CreateLogGroup",
+                                "logs:TagResource"
+                            ],
+                            "Resource": [
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-createProject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-moveProjectOutOfParentProject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateProject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateProjectStatus:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateProjectAssignedTo:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-assignToHomeCloud:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-assignToEstimate:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-changeAssociatedJob:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateProjectTiming:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-queryProjects:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-deleteProject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-archiveProject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-unarchiveProject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-addProjectPhotos:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-addProjectDocuments:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-addProjectDefect:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-deleteProjectPhoto:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-deleteProjectDocument:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-defectCreatedForObject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-unassignProjectsFromHomecloud:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-refineProjectGroups:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-refineParentsAfterJobAssigement:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-refineParentsAfterJobMerge:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-rollbackParentsRefinement:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-unassignFromHomecloud:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-refineProjectGroup:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-estimateDeleted:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-estimateProjectDisassociated:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-objectRoomChanged:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-projectPhotosDeleted:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-evaluationServicesUpdated:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-defectDeleted:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-projectPhotoUploaded:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-objectReplaced:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-publishProjectUpdates:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-publishProjectEvent:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-createParentProject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateParentProject:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateParentProjectStatus:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-deleteParentProject:*"
+                                }
+                            ]
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:PutLogEvents"
+                            ],
+                            "Resource": [
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-createProject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-moveProjectOutOfParentProject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateProject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateProjectStatus:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateProjectAssignedTo:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-assignToHomeCloud:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-assignToEstimate:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-changeAssociatedJob:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateProjectTiming:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-queryProjects:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-deleteProject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-archiveProject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-unarchiveProject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-addProjectPhotos:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-addProjectDocuments:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-addProjectDefect:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-deleteProjectPhoto:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-deleteProjectDocument:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-defectCreatedForObject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-unassignProjectsFromHomecloud:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-refineProjectGroups:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-refineParentsAfterJobAssigement:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-refineParentsAfterJobMerge:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-rollbackParentsRefinement:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-unassignFromHomecloud:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-refineProjectGroup:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-estimateDeleted:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-estimateProjectDisassociated:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-objectRoomChanged:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-projectPhotosDeleted:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-evaluationServicesUpdated:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-defectDeleted:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-projectPhotoUploaded:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-objectReplaced:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-publishProjectUpdates:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-publishProjectEvent:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-createParentProject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateParentProject:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-updateParentProjectStatus:*:*"
+                                },
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/dev-project-deleteParentProject:*:*"
+                                }
+                            ]
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": "sqs:SendMessage",
+                            "Resource": {
+                                "Fn::GetAtt": [
+                                    "EBLambdaFailureDstDLQueue",
+                                    "Arn"
+                                ]
+                            }
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": "sqs:SendMessage",
+                            "Resource": {
+                                "Fn::GetAtt": [
+                                    "DynamoDBLambdaFailureDstDLQueue",
+                                    "Arn"
+                                ]
+                            }
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "dynamodb:GetRecords",
+                                "dynamodb:GetShardIterator",
+                                "dynamodb:DescribeStream",
+                                "dynamodb:ListStreams"
+                            ],
+                            "Resource": [
+                                "arn:aws:dynamodb:us-east-1:659082433818:table/dev-project/stream/2024-07-04T20:26:27.526"
+                            ]
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "dynamodb:GetRecords",
+                                "dynamodb:GetShardIterator",
+                                "dynamodb:DescribeStream",
+                                "dynamodb:ListStreams"
+                            ],
+                            "Resource": [
+                                "arn:aws:dynamodb:us-east-1:659082433818:table/dev-project-event/stream/2024-07-04T20:26:27.707"
+                            ]
+                        }
+                    ]
+                }
+            }
+        ],
+        "Path": "/",
+        "RoleName": {
+            "Fn::Join": [
+                "-",
+                [
+                    "project",
+                    "dev",
+                    {
+                        "Ref": "AWS::Region"
+                    },
+                    "lambdaRole"
+                ]
+            ]
+        }
+    }
+}

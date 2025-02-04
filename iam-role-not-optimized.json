@@ -1,0 +1,182 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup",
+                "logs:TagResource"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-createProject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-moveProjectOutOfParentProject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateProject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateProjectStatus:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateProjectAssignedTo:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-assignToHomeCloud:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-assignToEstimate:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-changeAssociatedJob:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateProjectTiming:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-queryProjects:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-deleteProject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-archiveProject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-unarchiveProject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-addProjectPhotos:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-addProjectDocuments:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-addProjectDefect:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-deleteProjectPhoto:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-deleteProjectDocument:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-defectCreatedForObject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-jobDeleted:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-jobProjectDisassociated:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-estimateDeleted:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-estimateProjectDisassociated:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-objectRoomChanged:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-projectPhotosDeleted:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-evaluationServicesUpdated:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-defectDeleted:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-projectPhotoUploaded:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-objectReplaced:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-publishProjectUpdates:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-publishProjectEvent:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-createParentProject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateParentProject:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateParentProjectStatus:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-deleteParentProject:*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-createProject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-moveProjectOutOfParentProject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateProject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateProjectStatus:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateProjectAssignedTo:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-assignToHomeCloud:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-assignToEstimate:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-changeAssociatedJob:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateProjectTiming:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-queryProjects:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-deleteProject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-archiveProject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-unarchiveProject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-addProjectPhotos:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-addProjectDocuments:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-addProjectDefect:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-deleteProjectPhoto:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-deleteProjectDocument:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-defectCreatedForObject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-jobDeleted:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-jobProjectDisassociated:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-estimateDeleted:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-estimateProjectDisassociated:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-objectRoomChanged:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-projectPhotosDeleted:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-evaluationServicesUpdated:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-defectDeleted:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-projectPhotoUploaded:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-objectReplaced:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-publishProjectUpdates:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-publishProjectEvent:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-createParentProject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateParentProject:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-updateParentProjectStatus:*:*",
+                "arn:aws:logs:us-east-1:659082433818:log-group:/aws/lambda/dev-project-deleteParentProject:*:*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-dbs-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": "sqs:SendMessage",
+            "Resource": "arn:aws:sqs:us-east-1:659082433818:dev-project-service-dbs-lambda-failure-dst-dlq",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:DescribeStream",
+                "dynamodb:ListStreams"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:us-east-1:659082433818:table/dev-project/stream/2024-07-04T20:26:27.526"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:DescribeStream",
+                "dynamodb:ListStreams"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:us-east-1:659082433818:table/dev-project-event/stream/2024-07-04T20:26:27.707"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
